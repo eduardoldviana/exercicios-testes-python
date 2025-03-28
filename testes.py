@@ -98,7 +98,7 @@ def test_estatisticas_numeros():
 def test_validar_nota(monkeypatch):
     # Simula entradas do usuário: ["abc", "-1", "11", "8"]
     entradas = iter(["abc", "-1", "11", "8"])  # O usuário tentará entradas erradas antes de acertar
-    monkeypatch.setattr("builtins.input", lambda _: next(entradas))
+    monkeypatch.setattr("builtins.input", lambda: next(entradas))
 
     resultado = validar_nota()
     assert resultado == "Nota válida: 8.00"
@@ -107,7 +107,7 @@ def test_validar_nota(monkeypatch):
 def test_validar_usuario_senha(monkeypatch):
     # Simula entradas do usuário: ["ana", "ana", "ana123"]
     entradas = iter(["ana", "ana", "ana123"])  # O usuário tenta repetir antes de acertar
-    monkeypatch.setattr("builtins.input", lambda _: next(entradas))
+    monkeypatch.setattr("builtins.input", lambda: next(entradas))
 
     resultado = validar_usuario_senha()
     assert resultado == "Usuário e senha cadastrados com sucesso!"
